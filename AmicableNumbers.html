@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Amicable Numbers</title>
+</head>
+<body>
+	<h1> Assignment 6, Part II: Amicable Numbers </h1>
+	<form>
+		Number 1:
+		<input type="text" id="num_one" name="num_one"><br><br>
+		Number 2:
+		<input type="text" id="num_two" name="num_two"><br><br>
+		<input type = "button" onclick = eventHandler() value = "Submit">
+		<div id = "numberone"> </div>
+		<div id = "numbertwo"> </div>
+		<div id = "amicable"> </div>
+	</form>
+	<script lang="javascript">
+		function eventHandler() {
+			readInput();
+
+			var first_num = document.getElementById("num_one").value;
+			var second_num = document.getElementById("num_two").value;
+			factor_arr_one = getFactors(first_num);
+			factor_arr_two = getFactors(second_num);
+			if ((addFactors(factor_arr_one) == second_num) &&
+			(addFactors(factor_arr_two) == first_num)) {
+				document.getElementById("amicable").innerHTML =
+				first_num + " and " + second_num + " are amicable."
+			} else {
+				document.getElementById("amicable").innerHTML =
+				first_num + " and " + second_num + " are NOT amicable."
+			}
+		}
+
+		function readInput() {
+			document.getElementById('numberone').innerHTML =
+			"Number 1: " + document.getElementById("num_one").value;
+			document.getElementById('numbertwo').innerHTML =
+			"Number 2: " + document.getElementById("num_two").value;
+		}
+		// var result = isFactor(100, 10);
+		// document.write("100 and 10 (should return true): ", result, "<br>");
+		// result = isFactor(100, 19);
+		// document.write("100 and 19 (should return false): ", result, "<br>");
+		// result = isFactor(100, 2);
+		// document.write("100 and 2 (should return true): ", result, "<br>");
+		// result = isFactor(8, 100);
+		// document.write("10 and 100 (should return false): ", result, "<br>");
+
+		function isFactor(number, test) {
+			if (number < test) {
+				return false;
+			}
+			if (number % test == 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		// showFactors([1,2,3,4,5]);
+		// showFactors([100]);
+		// showFactors([]);
+		// showFactors([200,5]);
+		// showFactors([8, 10, 16, 4]);
+
+		function showFactors(array) {
+			document.write("{")
+			for (i = 0; i < array.length; i++) {
+				document.write(array[i], " ");
+			}
+			document.write("} <br>");
+		}
+
+		// sum = addFactors([1,2,3,4,5]);
+		// document.write("Should be 15: ", sum, "<br>");
+		// sum = addFactors([100]);
+		// document.write("Should be 100: ", sum, "<br>");
+		// sum = addFactors([]);
+		// document.write("Should be 0: ", sum, "<br>");
+		// sum = addFactors([200,5]);
+		// document.write("Should be 205: ", sum, "<br>");
+		// sum = addFactors([8, 10, 16, 4]);
+		// document.write("Should be 38: ", sum, "<br>");
+
+		function addFactors(array) {
+			var sum = 0;
+			for (i = 0; i < array.length; i++) {
+				sum += array[i];
+				
+			}
+			return sum;
+		}
+
+		// factors = getFactors(10);
+		// document.write("Should be 1,2,5: ", factors, "<br>");
+		// factors = getFactors(0);
+		// document.write("Should be blank: ", factors, "<br>");
+		// factors = getFactors(24);
+		// document.write("Should be 1,2,3,4,6,8,12: ", factors, "<br>");
+		// factors = getFactors(1);
+		// document.write("Should be blank: ", factors, "<br>");
+		// factors = getFactors(7);
+		// document.write("Should be 1: ", factors, "<br>");
+		
+
+
+		function getFactors(number) {
+			var factor_arr = [];
+			var j = 0;
+			for (i = 0; i < number; i++) {
+				if (number % i == 0) {
+					factor_arr[j] = i;
+					j++;
+				}
+			}
+			return factor_arr;
+		}
+
+	</script>
+	
+</body>
+</html>
